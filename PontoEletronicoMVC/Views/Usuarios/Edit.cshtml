@@ -1,0 +1,66 @@
+﻿@model PontoEletronicoMVC.Models.Usuario
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Senha" class="control-label"></label>
+                <input asp-for="Senha" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Departamento" class="control-label"></label>
+                <select asp-for="Departamento" class="form-control"></select>
+                <span asp-validation-for="Departamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryAm" class="control-label"></label>
+                <input asp-for="EntryAm" class="form-control" />
+                <span asp-validation-for="EntryAm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExitAm" class="control-label"></label>
+                <input asp-for="ExitAm" class="form-control" />
+                <span asp-validation-for="ExitAm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryPm" class="control-label"></label>
+                <input asp-for="EntryPm" class="form-control" />
+                <span asp-validation-for="EntryPm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExitPm" class="control-label"></label>
+                <input asp-for="ExitPm" class="form-control" />
+                <span asp-validation-for="ExitPm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

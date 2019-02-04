@@ -23,6 +23,17 @@ namespace PontoEletronicoMVC.Models
         {
         }
 
-
+        public Usuario(int id, string nome, string email, string senha, Departamentos departamento, TimeSpan entryAm, TimeSpan exitAm, TimeSpan entryPm, TimeSpan exitPm)
+        {
+            Id = id;
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+            Departamento = departamento;
+            EntryAm = entryAm;
+            ExitAm = exitAm;
+            EntryPm = entryPm;
+            ExitPm = exitPm;
+        }
     }
 }
