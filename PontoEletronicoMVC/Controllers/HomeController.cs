@@ -5,11 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PontoEletronicoMVC.Models;
+using PontoEletronicoMVC.Services;
 
 namespace PontoEletronicoMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UsuarioServices _usuarioServices;
+        
+        public HomeController(UsuarioServices usuarioServices)
+        {
+            _usuarioServices = usuarioServices;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -18,6 +26,14 @@ namespace PontoEletronicoMVC.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(Usuario user)
+        {
+            
+            Usuario usuario = _usuarioServices.ValidarLogin(user.Email, user.Senha);
+            return View(); 
         }
 
         public IActionResult About()
