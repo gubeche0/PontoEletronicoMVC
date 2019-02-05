@@ -37,6 +37,8 @@ namespace PontoEletronicoMVC
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSession();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<PontoEletronicoMVCContext>(options =>
                     options.UseInMemoryDatabase(Configuration.GetConnectionString("PontoEletronicoMVCContext")));
@@ -62,6 +64,7 @@ namespace PontoEletronicoMVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PontoEletronicoMVC.Models;
 using PontoEletronicoMVC.Services;
@@ -30,10 +31,25 @@ namespace PontoEletronicoMVC.Controllers
 
         [HttpPost]
         public IActionResult Login(Usuario user)
-        {
+         {
+            if (user.Email != null && user.Senha != null)
+            {
+
+                Usuario usuario = _usuarioServices.ValidarLogin(user.Email, user.Senha);
             
-            Usuario usuario = _usuarioServices.ValidarLogin(user.Email, user.Senha);
-            return View(); 
+                if(usuario == null)
+                {
+                    TempData["ErrorLogin"] = "Email ou Senha são inválidos";
+                    return View(); 
+                }
+
+                HttpContext.Session.SetString("UserId", usuario.Id.ToString());
+                HttpContext.Session.SetString("UserNome", usuario.Nome);
+                HttpContext.Session.SetString("UserEmail", usuario.Email);
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+            
         }
 
         public IActionResult About()

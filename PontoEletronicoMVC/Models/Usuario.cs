@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PontoEletronicoMVC.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace PontoEletronicoMVC.Models
 {
     public class Usuario
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [StringLength(80, MinimumLength = 3, ErrorMessage = "{0} size should be between {2} and {1}")]
         public string Nome { get; set; }
+        
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [EmailAddress(ErrorMessage = "Entre com um email válido")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "{0} é obrigatório")]
+        [StringLength(80, MinimumLength = 6, ErrorMessage = "{0} size should be between {2} and {1}")]
         public string Senha { get; set; }
         public Departamentos Departamento { get; set; }
 
