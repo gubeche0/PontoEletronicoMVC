@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PontoEletronicoMVC.Models;
 using PontoEletronicoMVC.Services;
+using Microsoft.AspNetCore;
 
 namespace PontoEletronicoMVC.Controllers
 {
@@ -46,10 +47,17 @@ namespace PontoEletronicoMVC.Controllers
                 HttpContext.Session.SetString("UserId", usuario.Id.ToString());
                 HttpContext.Session.SetString("UserNome", usuario.Nome);
                 HttpContext.Session.SetString("UserEmail", usuario.Email);
+                HttpContext.Session.SetString("UserDepartamento", usuario.Departamento.ToString());
                 return RedirectToAction(nameof(Index));
             }
             return View();
             
+        }
+
+        public  IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Login));
         }
 
         public IActionResult About()

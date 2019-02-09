@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PontoEletronicoMVC.Models;
+using PontoEletronicoMVC.Filters;
+using PontoEletronicoMVC.Models.Enums;
 
 namespace PontoEletronicoMVC.Controllers
 {
+    [AutorizacaoFilter(Departamento = "Rh")]
     public class UsuariosController : Controller
     {
         private readonly PontoEletronicoMVCContext _context;

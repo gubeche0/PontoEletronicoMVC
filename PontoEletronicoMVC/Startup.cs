@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using PontoEletronicoMVC.Models;
 using PontoEletronicoMVC.Data;
 using PontoEletronicoMVC.Services;
+using PontoEletronicoMVC.Filters;
 
 namespace PontoEletronicoMVC
 {
