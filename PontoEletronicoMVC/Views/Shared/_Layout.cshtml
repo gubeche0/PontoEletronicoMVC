@@ -15,6 +15,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    @RenderSection("Css", required: false)
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -69,10 +70,10 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <!--<hr />
         <footer>
             <p>&copy; 2019 - PontoEletronicoMVC</p>
-        </footer>
+        </footer> -->
     </div>
 
     <environment include="Development">

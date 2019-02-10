@@ -22,13 +22,28 @@ namespace PontoEletronicoMVC.Models
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [StringLength(80, MinimumLength = 6, ErrorMessage = "{0} size should be between {2} and {1}")]
+        [DataType(DataType.Password)]
         public string Senha { get; set; }
         public Departamentos Departamento { get; set; }
 
+        [DataType(DataType.Time)]
+        [Display(Name ="Entrada 1")]
         public TimeSpan EntryAm { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "Saida 1")]
         public TimeSpan ExitAm { get; set; }
+
+        [Required(AllowEmptyStrings =false)]
+        [DataType(DataType.Time)]
+        [Display(Name = "Entrada 2")]
         public TimeSpan EntryPm { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "Saida 2")]
         public TimeSpan ExitPm { get; set; }
+
+        public ICollection<RegistroPonto> Pontos { get; set; }
 
         public Usuario()
         {
@@ -45,6 +60,16 @@ namespace PontoEletronicoMVC.Models
             ExitAm = exitAm;
             EntryPm = entryPm;
             ExitPm = exitPm;
+        }
+
+        public void AddRegistroPonto(RegistroPonto obj)
+        {
+            Pontos.Add(obj);
+        }
+
+        public void RemoveRegistroPonto(RegistroPonto obj)
+        {
+            Pontos.Remove(obj);
         }
     }
 }

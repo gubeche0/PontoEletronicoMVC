@@ -42,7 +42,8 @@ namespace PontoEletronicoMVC
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<PontoEletronicoMVCContext>(options =>
-                    options.UseInMemoryDatabase(Configuration.GetConnectionString("PontoEletronicoMVCContext")));
+                    options.UseMySql(Configuration.GetConnectionString("PontoEletronicoMVCContext"), builder =>
+            builder.MigrationsAssembly("PontoEletronicoMVC")));
 
             services.AddScoped<SeedingService>();
             services.AddScoped<UsuarioServices>();

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using PontoEletronicoMVC.Models;
 using PontoEletronicoMVC.Services;
 using Microsoft.AspNetCore;
+using PontoEletronicoMVC.Filters;
 
 namespace PontoEletronicoMVC.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly UsuarioServices _usuarioServices;
@@ -20,9 +22,22 @@ namespace PontoEletronicoMVC.Controllers
             _usuarioServices = usuarioServices;
         }
 
+        [AutorizacaoFilter]
         public IActionResult Index()
         {
-            return View();
+            string id = HttpContext.Session.GetString("UserId");
+            Usuario usuario = _usuarioServices.FindById(int.Parse(id));
+            return View(usuario);
+        }
+
+        [HttpPost]
+        [AutorizacaoFilter]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(Usuario usuario)
+        {
+
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Login()

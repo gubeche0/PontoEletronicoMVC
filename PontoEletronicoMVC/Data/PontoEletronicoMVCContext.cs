@@ -14,5 +14,6 @@ namespace PontoEletronicoMVC.Models
         }
 
         public DbSet<PontoEletronicoMVC.Models.Usuario> Usuario { get; set; }
+        public DbSet<PontoEletronicoMVC.Models.RegistroPonto> RegistroPonto { get; set; }
     }
 }

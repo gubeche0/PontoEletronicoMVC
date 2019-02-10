@@ -33,5 +33,18 @@ namespace PontoEletronicoMVC.Services
 
         }
 
+        public void Insert(Usuario obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
+
+        public Usuario FindById(int id)
+        {
+            return _context.Usuario.FirstOrDefault(obj => obj.Id == id);
+        }
+
+
+
     }
 }

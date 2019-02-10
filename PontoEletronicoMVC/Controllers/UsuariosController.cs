@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PontoEletronicoMVC.Models;
 using PontoEletronicoMVC.Filters;
 using PontoEletronicoMVC.Models.Enums;
+using PontoEletronicoMVC.Services;
 
 namespace PontoEletronicoMVC.Controllers
 {
@@ -15,10 +16,12 @@ namespace PontoEletronicoMVC.Controllers
     public class UsuariosController : Controller
     {
         private readonly PontoEletronicoMVCContext _context;
+        private readonly UsuarioServices _usuarioService;
 
-        public UsuariosController(PontoEletronicoMVCContext context)
+        public UsuariosController(PontoEletronicoMVCContext context, UsuarioServices usuarioServices)
         {
             _context = context;
+            _usuarioService = usuarioServices;
         }
 
         // GET: Usuarios
@@ -56,10 +59,11 @@ namespace PontoEletronicoMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Senha,Departamento,EntryAm,ExitAm,EntryPm,ExitPm")] Usuario usuario)
+        public async Task<IActionResult> Create(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
+                //_usuarioService.Insert(usuario);
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
