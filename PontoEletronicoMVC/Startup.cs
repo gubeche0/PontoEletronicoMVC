@@ -47,6 +47,7 @@ namespace PontoEletronicoMVC
 
             services.AddScoped<SeedingService>();
             services.AddScoped<UsuarioServices>();
+            services.AddScoped<RegistroPontoServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

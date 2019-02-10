@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PontoEletronicoMVC.Models;
 
 namespace PontoEletronicoMVC.Services
@@ -25,11 +26,26 @@ namespace PontoEletronicoMVC.Services
 
         public RegistroPonto FindById(int id)
         {
-            
-            return _context.RegistroPonto.FirstOrDefault(obj => obj.Id == id);
+
+            return _context.RegistroPonto.Include(obj => obj.Usuario).FirstOrDefault(obj => obj.Id == id);
         }
 
+        public RegistroPonto FindByDayWithoutSaida(DateTime data, Usuario usuario)
+        {
 
+            return _context.RegistroPonto.Include(obj => obj.Usuario).FirstOrDefault(obj => obj.Entrada.Date == data.Date && obj.Saida == new DateTime() && obj.Usuario == usuario);
+        }
 
+        public void Update(RegistroPonto obj)
+        {
+            if (_context.RegistroPonto.Any(x => x.Id == obj.Id))
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+
+        }
     }
+
 }
+

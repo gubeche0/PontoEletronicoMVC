@@ -26,19 +26,22 @@ namespace PontoEletronicoMVC.Models
         public string Senha { get; set; }
         public Departamentos Departamento { get; set; }
 
+        [Required(ErrorMessage = "{0} é obrigatório")]
         [DataType(DataType.Time)]
         [Display(Name ="Entrada 1")]
         public TimeSpan EntryAm { get; set; }
 
+        [Required(ErrorMessage = "{0} é obrigatório")]
         [DataType(DataType.Time)]
         [Display(Name = "Saida 1")]
         public TimeSpan ExitAm { get; set; }
 
-        [Required(AllowEmptyStrings =false)]
+        [Required(ErrorMessage = "{0} é obrigatório")]
         [DataType(DataType.Time)]
         [Display(Name = "Entrada 2")]
         public TimeSpan EntryPm { get; set; }
 
+        [Required(ErrorMessage = "{0} é obrigatório")]
         [DataType(DataType.Time)]
         [Display(Name = "Saida 2")]
         public TimeSpan ExitPm { get; set; }

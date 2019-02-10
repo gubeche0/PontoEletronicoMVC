@@ -70,10 +70,23 @@
 
             </ul>
         </div>
+        <h1></h1>
         <div class="btn-ponto">
             <form asp-action="Index" asp-controller="Home" method="post">
-                
-                <input type="submit" name="Ponto" class="btn btn-success btn-block" value="Entrar" />
+                @{
+                    if (Model.Pontos != null)
+                    {
+                        RegistroPonto ponto = Model.Pontos.FirstOrDefault<RegistroPonto>();
+                        <input type="hidden" name="id" value="@ponto.Id" />
+                        <input type="submit" name="Ponto" class="btn btn-danger btn-block" value="Registrar Saida" />
+                    }
+                    else
+                    {
+                        <input type="submit" name="Ponto" class="btn btn-success btn-block" value="Registrar Entrada" />
+                    }
+                }
+
+
             </form>
         </div>
     </div>
