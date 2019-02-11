@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PontoEletronicoMVC.Models.RegistroPonto>
+
+@{
+    ViewData["Title"] = "Historico de Pontos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Data
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saida)
+            </th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Entrada.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.Entrada.ToString("HH:mm:ss")
+            </td>
+            <td>
+                @item.Saida.ToString("HH:mm:ss")
+            </td>
+            
+            
+        </tr>
+}
+    </tbody>
+</table>

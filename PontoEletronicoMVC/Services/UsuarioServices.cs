@@ -33,6 +33,8 @@ namespace PontoEletronicoMVC.Services
 
         }
 
+        
+
         public void Insert(Usuario obj)
         {
             _context.Add(obj);

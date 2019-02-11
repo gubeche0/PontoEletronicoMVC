@@ -39,10 +39,12 @@
                         if (HttpContextAccessor.HttpContext.Session.GetString("UserDepartamento") == "Rh")
                         {
                             <li><a asp-controller="Usuarios" asp-action="Index">Usuarios</a></li>
+
                         }
 
 
                     }
+                    <li><a asp-controller="RegistroPontos" asp-action="Index">Registros de Pontos</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @using Microsoft.AspNetCore.Http

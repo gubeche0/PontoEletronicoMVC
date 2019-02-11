@@ -18,6 +18,17 @@ namespace PontoEletronicoMVC.Services
         }
 
 
+
+        public List<RegistroPonto> FindAll()
+        {
+            return _context.RegistroPonto.ToList();
+        }
+
+        public List<RegistroPonto> FindAll(Usuario user)
+        {
+            return _context.RegistroPonto.Where(pt => pt.Usuario.Id == user.Id).ToList();
+        }
+
         public void Insert(RegistroPonto obj)
         {
             _context.Add(obj);
