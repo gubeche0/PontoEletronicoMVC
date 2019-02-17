@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using PontoEletronicoMVC.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace PontoEletronicoMVC.Models
 {
@@ -74,5 +76,29 @@ namespace PontoEletronicoMVC.Models
         {
             Pontos.Remove(obj);
         }
+
+        public TimeSpan CargaHoraria()
+        {
+            return (ExitAm - EntryAm + ExitPm - EntryPm);
+        }
+
+        public int DiasTrabalhados(DateTime initial, DateTime final)
+        {
+            return Pontos.Where(pt => pt.Entrada.Date >= initial && pt.Saida.Date <= final).Distinct((pt1, pt2) => pt1.Entrada.Date == pt2.Entrada.Date).Count();
+        }
+
+        public TimeSpan TotalHoras(DateTime initial, DateTime final)
+        {
+            
+            long ticks = Pontos.Where(pt => pt.Entrada.Date >= initial && pt.Saida.Date <= final).Sum(pt => pt.TotalTempo.Ticks);
+            TimeSpan time = new TimeSpan(ticks);
+            return time;
+        }
+
+        public TimeSpan TotalHorasExtra(DateTime initial, DateTime final)
+        {
+            return TotalHoras(initial, final) - CargaHoraria().Multiply(DiasTrabalhados(initial, final));
+        }
+
     }
 }

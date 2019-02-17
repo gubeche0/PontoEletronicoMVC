@@ -17,5 +17,18 @@ namespace PontoEletronicoMVC.Models
 
         public TimeSpan TotalTempo { get; set; }
 
+        public RegistroPonto()
+        {
+
+        }
+
+        public RegistroPonto(int id, DateTime entrada, DateTime saida, Usuario usuario, TimeSpan totalTempo)
+        {
+            Id = id;
+            Entrada = entrada;
+            Saida = saida;
+            Usuario = usuario;
+            TotalTempo = totalTempo;
+        }
     }
 }

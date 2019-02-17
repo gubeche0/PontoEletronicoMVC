@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PontoEletronicoMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace PontoEletronicoMVC.Services
 {
@@ -33,7 +34,10 @@ namespace PontoEletronicoMVC.Services
 
         }
 
-        
+        public List<Usuario> FindAll()
+        {
+            return _context.Usuario.Include(obj => obj.Pontos).ToList();
+        }
 
         public void Insert(Usuario obj)
         {

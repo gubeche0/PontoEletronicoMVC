@@ -30,6 +30,23 @@ namespace PontoEletronicoMVC.Controllers
             return View(await _context.Usuario.ToListAsync());
         }
 
+        public IActionResult Relatorio(DateTime? minDate, DateTime? maxDate)
+        {
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
+            var users = _usuarioService.FindAll();
+            return View(users);
+        }
+
+
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -155,5 +172,6 @@ namespace PontoEletronicoMVC.Controllers
         {
             return _context.Usuario.Any(e => e.Id == id);
         }
+
     }
 }
