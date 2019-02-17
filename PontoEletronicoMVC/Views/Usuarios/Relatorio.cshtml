@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<PontoEletronicoMVC.Models.Usuario>
 @{
-    ViewData["Title"] = "Historico de Pontos";
+    ViewData["Title"] = "Relatório Horas Extras";
 
     var dateInitial = DateTime.Parse(ViewData["minDate"].ToString());
     var dateFinal = DateTime.Parse(ViewData["maxDate"].ToString());
@@ -8,8 +8,27 @@
 
 <h2>@ViewData["Title"]</h2>
 
+<form asp-action="Relatorio" asp-controller="Usuarios" class="form-inline">
+    <div class="row">
+        <div class="col-sm-offset-5 col-sm-3">
+            <label for="minDate">Data Inicial:</label>
+            <input class="form-control" type="date" id="minDate" name="minDate" value="@ViewData["minDate"]" />
 
-<table class="table">
+        </div>
+        <div class="col-sm-3">
+            <label for="maxDate">Data Final: </label>
+            <input class="form-control" type="date" id="maxDate" name="maxDate" value="@ViewData["maxDate"]" />
+
+        </div>
+        <div class="col-sm-1">
+            <input type="submit" name="Pesquisar" value="Pesquisar" class="btn btn-default" />
+
+        </div>
+    </div>
+
+</form>
+
+<table class="table" style="margin-top:30px;">
     <thead>
         <tr>
             <th>
@@ -28,25 +47,26 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @item.Nome
-            </td>
-            <td class="text-center">
-                @{
-                    var a = item.TotalHoras(dateInitial, dateFinal).ToString("hh\\:mm");
-                    var b = item.TotalHorasExtra(dateInitial, dateFinal).ToString("\\-hh\\:mm");
 
-                }
-                @a
-            </td>
-            <td class="text-center">
-                @b
-            </td>
-            
+            var totalHoras = item.TotalHoras(dateInitial, dateFinal).ToString(@"hh\:mm");
+            var totalHorasExtras = item.TotalHorasExtra(dateInitial, dateFinal);
 
-        </tr>
-                        }
+
+            <tr>
+                <td>
+                    @item.Nome
+                </td>
+                <td class="text-center">
+
+                    @totalHoras
+                </td>
+                <td class="text-center">
+                    @(((totalHorasExtras < TimeSpan.Zero) ? "-" : "") + totalHorasExtras.ToString(@"hh\:mm"))
+                </td>
+
+
+            </tr>
+        }
     </tbody>
 </table>
 
