@@ -15,5 +15,7 @@ namespace PontoEletronicoMVC.Models
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
+        public TimeSpan TotalTempo { get; set; }
+
     }
 }

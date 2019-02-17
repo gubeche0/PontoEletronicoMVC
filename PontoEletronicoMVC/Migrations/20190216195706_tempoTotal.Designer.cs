@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PontoEletronicoMVC.Models;
 
 namespace PontoEletronicoMVC.Migrations
 {
     [DbContext(typeof(PontoEletronicoMVCContext))]
-    partial class PontoEletronicoMVCContextModelSnapshot : ModelSnapshot
+    [Migration("20190216195706_tempoTotal")]
+    partial class tempoTotal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
