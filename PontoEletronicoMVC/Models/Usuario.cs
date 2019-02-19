@@ -84,7 +84,7 @@ namespace PontoEletronicoMVC.Models
 
         public int DiasTrabalhados(DateTime initial, DateTime final)
         {
-            return Pontos.Where(pt => pt.Entrada.Date >= initial && pt.Saida.Date <= final).Distinct((pt1, pt2) => pt1.Entrada.Date == pt2.Entrada.Date).Count();
+            return Pontos.Where(pt => pt.Saida.Date >= initial && pt.Saida.Date <= final).Distinct((pt1, pt2) => pt1.Entrada.Date == pt2.Entrada.Date).Count();
         }
 
         public TimeSpan TotalHoras(DateTime initial, DateTime final)
